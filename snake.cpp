@@ -1,5 +1,4 @@
 /*************************************
-* Codestyle: https://sun.iwu.edu/~mliffito/cs_codex/posts/google-c++-style-guide/
 * Автор: Тимофеев Гордей Евгеньевич. ПИ-231
 * Версия 1
 * Название: Змейка
@@ -106,7 +105,6 @@ void Logic() {
   int prevY = TailY[0];
   int prev2X, prev2Y;
 
-  //THIS MOVES 1ST TAIL PIECE TO THE HEAD - MWAHAHAHA
   TailX[0] = x;
   TailY[0] = y;
 
