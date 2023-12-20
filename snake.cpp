@@ -38,27 +38,27 @@ void Draw() {
 
   clear();
 
-  for (int i = 0; i < width + 2; i++) {
-    mvprintw(0, i, "+");
+  for (int row = 0; row < width + 2; row++) {
+    mvprintw(0, row, "+");
   }
-  for (int i = 0; i < height + 2; i++) {
-    for (int j = 0; j < width + 2; j++) {
-      if (i == 0 | i ==21) {
-        mvprintw(i, j, "#");
+  for (int row = 0; row < height + 2; row++) {
+    for (int column = 0; column < width + 2; column++) {
+      if (row == 0 | row == 21) {
+        mvprintw(row, column, "#");
       }
-      else if (j == 0 | j == 21) {
-        mvprintw(i, j, "+");
+      else if (column == 0 | column == 21) {
+        mvprintw(row, column, "+");
       }
-      else if (i == y && j == x) {
-        mvprintw(i, j, "0");
+      else if (row == y && column == x) {
+        mvprintw(row, column, "0");
       }
-      else if (i == FruitY && j == FruitX) {
-        mvprintw(i, j, "0");
+      else if (row == FruitY && column == FruitX) {
+        mvprintw(row, column, "0");
       }
       else {
-        for (int k = 0; k < nTail; k++) {
-          if (TailX[k] == j && TailY[k] == i) {
-            mvprintw(i, j, "o");
+        for (int tailSegment = 0; tailSegment < nTail; tailSegment++) {
+          if (TailX[tailSegment] == column && TailY[tailSegment] == row) {
+            mvprintw(row, column, "o");
           }
         }
       }
@@ -108,11 +108,11 @@ void Logic() {
   TailX[0] = x;
   TailY[0] = y;
 
-  for (int i = 1; i < nTail; i++) {
-    prev2X = TailX[i];
-    prev2Y = TailY[i];
-    TailX[i] = prevX;
-    TailY[i] = prevY;
+  for (int segmentIndex = 1; segmentIndex < nTail; segmentIndex++) {
+    prev2X = TailX[segmentIndex];
+    prev2Y = TailY[segmentIndex];
+    TailX[segmentIndex] = prevX;
+    TailY[segmentIndex] = prevY;
     prevX = prev2X;
     prevY = prev2Y;
   }
@@ -134,7 +134,7 @@ void Logic() {
       break;
   }
 
-  if (x > width || x < 1 || y > height) {
+  if (x > width || x < 1 || y > height || y < 1) {
     gameOver = true;
   }
   if (x == FruitX && y == FruitY) {
@@ -144,8 +144,8 @@ void Logic() {
     nTail++;
   }
 
-  for (int i = 0; i < nTail; i++) {
-    if (TailX[i] == x && TailY[i] == y) {
+  for (int tailSegment = 0; tailSegment < nTail; tailSegment++) {
+    if (TailX[tailSegment] == x && TailY[tailSegment] == y) {
       gameOver = true;
     }
   }
